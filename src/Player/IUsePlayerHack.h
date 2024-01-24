@@ -1,7 +1,8 @@
 #pragma once
 
-namespace al {
 class PlayerHackKeeper;
+
+namespace al {
 
 class IUsePlayerHack {
 public:

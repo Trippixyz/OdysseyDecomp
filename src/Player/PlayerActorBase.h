@@ -7,7 +7,6 @@
 class IUsePlayerCollision;
 class PlayerInfo;
 class PlayerInitInfo;
-class PlayerHackKeeper;
 
 class PlayerActorBase : public al::LiveActor, public al::IUsePlayerHack {
 public:
@@ -18,7 +17,7 @@ public:
     virtual u32 getPortNo() const;
     virtual void* getViewMtx() const;  // NOTE: unknown return type
     virtual IUsePlayerCollision* getPlayerCollision() const;
-    virtual al::PlayerHackKeeper* getPlayerHackKeeper() const override;
+    virtual PlayerHackKeeper* getPlayerHackKeeper() const override;
     virtual bool isEnableDemo();
     virtual void startDemo();
     virtual void endDemo();
@@ -43,7 +42,7 @@ public:
     virtual void movement() override;
     virtual bool checkDeathArea();
     virtual void sendCollisionMsg();
-    virtual bool receivePushMsg(const al::SensorMsg*, al::HitSensor*, al::HitSensor*);
+    virtual bool receivePushMsg(const al::SensorMsg*, al::HitSensor*, al::HitSensor*, f32);
 
 private:
     void* mViewMtx = nullptr;  // NOTE: unknown type

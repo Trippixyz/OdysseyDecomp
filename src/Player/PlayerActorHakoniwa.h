@@ -7,6 +7,7 @@ namespace al {
 class FootPrintHolder;
 class HitSensor;
 class WaterSurfaceFinder;
+class PlayerHackKeeper;
 }  // namespace al
 
 class PlayerInfo;
@@ -36,7 +37,6 @@ class PlayerWallActionHistory;
 class PlayerBindKeeper;
 class PlayerCarryKeeper;
 class PlayerEquipmentUser;
-class PlayerHackKeeper;
 class PlayerFormSensorCollisionArranger;
 class PlayerJumpMessageRequest;
 class PlayerSandSinkAffect;
@@ -128,7 +128,8 @@ class PlayerJudgeWallHitDownForceRun;
 class PlayerJudgeWallHitDownRolling;
 class PlayerJudgeWallKeep;
 
-class PlayerActorHakoniwa : PlayerActorBase, IUseDimension {
+class PlayerActorHakoniwa : public PlayerActorBase, public IUseDimension {
+public:
     PlayerInfo* mPlayerInfo;
     PlayerConst* mPlayerConst;
     PlayerInput* mPlayerInput;
@@ -253,4 +254,97 @@ class PlayerActorHakoniwa : PlayerActorBase, IUseDimension {
     PlayerJudgeWallHitDownRolling* mPlayerJudgeWallHitDownRolling;
     PlayerJudgeWallKeep* mPlayerJudgeWallKeep;
     void* gap_2;
+
+    PlayerActorHakoniwa(const char*);
+    void initAfterPlacement() override;
+    void movement() override;
+    void attackSensor(al::HitSensor*, al::HitSensor*) override;
+    bool receiveMsg(const al::SensorMsg*, al::HitSensor*, al::HitSensor*) override;
+    void control() override;
+    void updateCollider() override;
+    void initPlayer(const al::ActorInitInfo&, const PlayerInitInfo&) override;
+    u32 getPortNo() const override;
+    IUsePlayerCollision* getPlayerCollision() const override;
+    PlayerHackKeeper* getPlayerHackKeeper() const override;
+    bool isEnableDemo() override;
+    void startDemo() override;
+    void endDemo() override;
+    void startDemoPuppetable() override;
+    void endDemoPuppetable() override;
+    void startDemoShineGet() override;
+    void endDemoShineGet() override;
+    void startDemoMainShineGet() override;
+    void endDemoMainShineGet() override;
+    void startDemoHack() override;
+    void endDemoHack() override;
+    void startDemoKeepBind() override;
+    void noticeDemoKeepBindExecute() override;
+    void endDemoKeepBind() override;
+    void startDemoKeepCarry() override;
+    void endDemoKeepCarry() override;
+    void getDemoActor() override;
+    void* getDemoAnimator() override;
+    bool isDamageStopDemo() const override;
+    void* getPlayerPuppet() override;
+    PlayerInfo* getPlayerInfo() const override;
+    bool checkDeathArea() override;
+    void sendCollisionMsg() override;
+    bool receivePushMsg(const al::SensorMsg*, al::HitSensor*, al::HitSensor*, f32) override;
+
+    void updateModelShadowDropLength();
+    void executeAfterCapTarget();
+    void syncSensorAndCollision();
+    void checkDamageFromCollision();
+    void executePreMovementNerveChange();
+    void updateCarry();
+    void setNerveOnGround();
+    void startPlayerPuppet();
+    void cancelHackPlayerPuppetDemo();
+    void endPlayerPuppet();
+    void exeWait();
+    bool tryActionCapReturn();
+    bool tryActionCapSpinAttack();
+    void exeSquat();
+    bool tryActionSeparateCapThrow();
+    void exeRun();
+    void exeSlope();
+    void exeRolling();
+    void exeSpinCap();
+    bool tryChangeNerveFromAir();
+    bool tryActionCapSpinAttackMiss();
+    void exeJump();
+    void exeCapCatchPop();
+    void exeWallAir();
+    void exeWallCatch();
+    void exeGrabCeil();
+    void exePoleClimb();
+    void exeHipDrop();
+    void exeHeadSliding();
+    void exeLongJump();
+    void exeFall();
+    void exeSandSink();
+    void exeSandGeyser();
+    void exeRise();
+    void exeSwim();
+    void exeDamage();
+    void exeDamageSwim();
+    void exeDamageFire();
+    void exePress();
+    void exeHack();
+    void exeEndHack();
+    void exeBind();
+    bool tryActionCapSpinAttackBindEnd();
+    void exeDemo();
+    void exeCamera();
+    void exeAbyss();
+    void exeDead();
+    bool tryActionCapSpinAttackImpl(bool);
+
+    al::LiveActor*
+    getCurrentHack() const {  // i definitely dont regret using decomp as a submodule for headers
+        return *reinterpret_cast<al::LiveActor**>(reinterpret_cast<u8*>(mPlayerHackKeeper) + 0x68);
+    }
+
+    void startDemoPuppetableSuperReal();
+    void endDemoPuppetableSuperReal();
 };
