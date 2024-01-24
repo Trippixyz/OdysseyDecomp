@@ -6,7 +6,7 @@ void PlayerActorBase::initPlayer(const al::ActorInitInfo&, const PlayerInitInfo&
 IUsePlayerCollision* PlayerActorBase::getPlayerCollision() const {
     return nullptr;
 }
-al::PlayerHackKeeper* PlayerActorBase::getPlayerHackKeeper() const {
+PlayerHackKeeper* PlayerActorBase::getPlayerHackKeeper() const {
     return nullptr;
 }
 bool PlayerActorBase::isEnableDemo() {
