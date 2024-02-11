@@ -13,3 +13,6 @@
 [submodule "lib/eui"]
 	path = lib/eui
 	url = https://github.com/open-ead/eui
+[submodule "lib/NintendoSDK"]
+	path = lib/NintendoSDK
+	url = https://github.com/Trippixyz/nnheaders
