@@ -17,3 +17,6 @@
 	path = lib/NintendoSDK
 	url = https://github.com/Trippixyz/nnheaders
 	branch = exlaunch
+[submodule "lib/LibMessageStudio"]
+	path = lib/LibMessageStudio
+	url = https://github.com/Trippixyz/LibMessageStudio
