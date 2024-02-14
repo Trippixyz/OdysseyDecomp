@@ -65,3 +65,6 @@ target_link_libraries(odyssey PUBLIC agl)
 
 add_subdirectory(lib/eui)
 target_link_libraries(odyssey PUBLIC eui)
+
+add_subdirectory(lib/LibMessageStudio)
+target_link_libraries(odyssey PUBLIC LibMessageStudio)
