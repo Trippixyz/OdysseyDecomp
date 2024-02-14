@@ -1,6 +1,6 @@
 #pragma once
 
-#include <sead/heap/seadHeap.h>
+#include <heap/seadHeap.h>
 
 namespace al {
 
