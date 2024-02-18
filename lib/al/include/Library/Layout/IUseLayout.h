@@ -2,8 +2,9 @@
 
 #include "Library/HostIO/IUseName.h"
 
+#include "Library/Layout/LayoutKeeper.h"
+
 namespace al {
-class LayoutKeeper;
 
 class IUseLayout : virtual public IUseName {
 public:
