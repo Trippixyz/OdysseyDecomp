@@ -18,6 +18,12 @@ void appearLayoutIfDead(LayoutActor* actor);
 
 void calcTrans(sead::Vector3f* trans, const IUseLayout*);
 const sead::Vector3f& getLocalTrans(const IUseLayout*);
+const sead::Vector3f* getLocalTransPtr(const al::IUseLayout*);
+const sead::Vector2f& getLocalScale(const al::IUseLayout*);
+
+void setLocalTrans(IUseLayout*, const sead::Vector3f&);
+
+void setLocalScale(al::IUseLayout*, const sead::Vector2f&);
 
 void updateLayoutPaneRecursive(LayoutActor* actor);
 
